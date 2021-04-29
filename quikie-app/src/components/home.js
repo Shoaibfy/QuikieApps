@@ -25,7 +25,7 @@ const Home = () => {
     useEffect(() => {
         // fetchingData()
         setWorkingData(data.slice(currentIndex, noOfElementPerPage))
-    },[])
+    }, [])
 
     const fetchingData = () => {
         // fetch('https://jsonplaceholder.typicode.com/users')
@@ -51,13 +51,13 @@ const Home = () => {
         setWorkingData(data)
     }
     const paginate = (page) => {
-        setWorkingData(data1.slice(noOfElementPerPage*(page-1), noOfElementPerPage*page))
+        setWorkingData(data1.slice(noOfElementPerPage * (page - 1), noOfElementPerPage * page))
     }
 
     return (
         <div className="App">
             <Navbar />
-            <input type='text' placeholder='Enter your company name...' className='m-5' value={text} onChange={(e) => handleSearch(e)} />
+            <input type='text' style={{ width: '600px' }} placeholder='Enter company name...' className='m-5' value={text} onChange={(e) => handleSearch(e)} />
 
             <Table responsive="sm">
 

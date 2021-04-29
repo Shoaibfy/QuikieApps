@@ -8,9 +8,7 @@ import img2 from '../Assets/FB.png';
 const FacebookDetails = () => {
     return (
         <div style={{ margin: '5px auto' }}>
-
-
-
+            <h5 style={{ color: 'blue', textAlign: 'center' }} > Facebook</h5>
             < Card style={{ width: '35rem', padding: '10px', margin: '10px auto' }}>
                 <Card.Img variant="top" src={img2} style={{ width: '10rem', margin: "2px auto" }} />
                 <hr></hr>

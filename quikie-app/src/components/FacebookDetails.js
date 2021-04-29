@@ -1,8 +1,8 @@
 
 
 import { Button, Card } from 'react-bootstrap';
-
 import img2 from '../Assets/FB.png';
+import { Link } from 'react-router-dom'
 
 
 const FacebookDetails = () => {
@@ -18,7 +18,7 @@ const FacebookDetails = () => {
                     < Card.Text > Stock Symbol:<b>FB </b> </Card.Text>
                     < Card.Text > Market Cap:<b>$ 4.56</b>  </Card.Text>
                     < Card.Text > Current price:<b>$55.90</b> </Card.Text>
-                    <Button variant='primary'  >Buy Shares</Button>
+                    <Link to={`/`}> <Button variant='primary'  >Buy Shares</Button></Link>
 
                 </Card.Body>
             </Card>

@@ -34,12 +34,7 @@ const Home = () => {
 
     }
 
-    // const addCompanyDetails = (id, company, stockSymbol) => {
 
-    //     setCompanyDetails(companyDetails.concat({ id, company, stockSymbol }))
-
-
-    // }
     const handleSearch = (e) => {
         const array = workingData.filter((val) => {
             if (e.target.value === "") {

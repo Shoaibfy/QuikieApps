@@ -35,16 +35,10 @@ const Home = () => {
     }
 
 
-    const handleSearch = (e) => {
-        const array = workingData.filter((val) => {
-            if (e.target.value === "") {
-                return val
-            } else if (val.company.toLowerCase().includes(e.target.value.toLowerCase())) {
-                return val
-            }
-        })
-        setWorkingData(data)
-    }
+    // const handleSearch = (e) => {
+    //     const array = 
+    //     setWorkingData(data)
+    // }
     const paginate = (page) => {
         setWorkingData(data1.slice(noOfElementPerPage * (page - 1), noOfElementPerPage * page))
     }
@@ -52,7 +46,7 @@ const Home = () => {
     return (
         <div className="App">
             <Navbar />
-            <input type='text' style={{ width: '600px' }} placeholder='Enter company name...' className='m-5' value={text} onChange={(e) => handleSearch(e)} />
+            <input type='text' style={{ width: '600px' }} placeholder='Enter company name...' className='m-5' value={text} onChange={(e) => setText(e.target.value)} />
 
             <Table responsive="sm">
 
@@ -69,7 +63,13 @@ const Home = () => {
                 </thead>
 
                 <tbody>
-                    {workingData.map((item, id) =>
+                    {workingData.filter((val) => {
+                        if (text === "") {
+                            return val
+                        } else if (val.company.toLowerCase().includes(text.toLowerCase())) {
+                            return val
+                        }
+                    }).map((item, id) =>
                         <tr key={id}>
                             <td>  {item.id} </td>
                             <td>{item.company}</td>

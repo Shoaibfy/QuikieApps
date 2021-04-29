@@ -20,7 +20,7 @@ const View = () => {
         }, {})
         setCompanyData(data)
         console.log(data)
-    }, [])
+    })
 
     return (
         <div>

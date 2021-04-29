@@ -6,9 +6,6 @@ import { Link } from 'react-router-dom'
 
 
 const Amazon = () => {
-    const goBack = () => {
-
-    }
 
     return (
         <div style={{ margin: '5px auto' }}>

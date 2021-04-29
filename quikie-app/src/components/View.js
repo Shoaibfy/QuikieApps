@@ -8,26 +8,30 @@ import { useParams } from 'react-router-dom'
 const View = () => {
     const param = useParams()
     const [title, setTitle] = useState('shoaib')
+    const [companyData, setCompanyData] = useState({})
 
     useEffect(() => {
-        console.log("params:", param)
+        console.log(param)
+        const data = data1.reduce((acc, val) => {
+            if(val.id == param.id){
+                acc = val
+            }
+            return acc
+        },{})
+        setCompanyData(data)
+        console.log(data)
     }, [])
 
     return (
         <div>
-            {/* <div style={{ display: 'flex', justifyContent: 'space-around', color: 'blue', margin: '20px auto' }} >
-                <h5 onClick={() => setTitle('amezon')} > Amazon</h5>
-                <h5 onClick={() => setTitle('fb')} > FaceBook</h5>
-                <h5 onClick={() => setTitle('')} > Google</h5>
-            </div > */}
-            {/* <div style={{ display: 'flex', flexDirection: 'row' }} >
-                {title === 'amezon' ? <Amezon /> :
-                    title === 'fb' ? <FacebookDetails /> :
-                        < GoogleDetails />}
-
-            </div> */}
-            {title}
-        </div >
+        {companyData !== undefined ?
+            <div style={{ display: 'flex', flexDirection: 'row' }} >
+                {companyData.company}
+            </div>
+            :
+            <div>Loading ...</div>
+        }
+        </div>
     )
 }
 

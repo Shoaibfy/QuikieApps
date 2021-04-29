@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom'
 import { Table, Button } from 'react-bootstrap';
+import Pagination from './Pagination'
 import data1 from './data'
 import Navbar from './Navbar';
 
@@ -14,12 +15,17 @@ const Home = () => {
     const [companyDetails, setCompanyDetails] = useState([])
 
     const [data, setData] = useState(data1)
+    const [workingData, setWorkingData] = useState([])
+    const [pageNo, setPageNo] = useState(1)
+    const [currentIndex, setCurrentIndex] = useState(0)
+    const [noOfElementPerPage, setNoOfElementPerPage] = useState(1)
 
 
 
     useEffect(() => {
-        fetchingData()
-    })
+        // fetchingData()
+        setWorkingData(data.slice(currentIndex, noOfElementPerPage))
+    },[])
 
     const fetchingData = () => {
         // fetch('https://jsonplaceholder.typicode.com/users')
@@ -28,19 +34,32 @@ const Home = () => {
 
     }
 
-    const addCompanyDetails = (id, company, stockSymbol) => {
+    // const addCompanyDetails = (id, company, stockSymbol) => {
 
-        setCompanyDetails(companyDetails.concat({ id, company, stockSymbol }))
+    //     setCompanyDetails(companyDetails.concat({ id, company, stockSymbol }))
 
 
+    // }
+    const handleSearch = (e) => {
+        const array = workingData.filter((val) => {
+            if (e.target.value === "") {
+                return val
+            } else if (val.company.toLowerCase().includes(e.target.value.toLowerCase())) {
+                return val
+            }
+        })
+        setWorkingData(data)
+    }
+    const paginate = (page) => {
+        setWorkingData(data1.slice(noOfElementPerPage*(page-1), noOfElementPerPage*page))
     }
 
     return (
         <div className="App">
             <Navbar />
-            <input type='text' placeholder='Enter your company name...' className='m-5' value={text} onChange={(e) => setText(e.target.value)} />
+            <input type='text' placeholder='Enter your company name...' className='m-5' value={text} onChange={(e) => handleSearch(e)} />
 
-            < Table responsive="sm">
+            <Table responsive="sm">
 
                 <thead>
                     <tr>
@@ -55,33 +74,21 @@ const Home = () => {
                 </thead>
 
                 <tbody>
-                    {data.filter((val) => {
-
-                        if (text === "") {
-                            return val
-                        } else if (val.company.toLowerCase().includes(text.toLowerCase())) {
-                            return val
-                        }
-                    }).map((item, id) =>
+                    {workingData.map((item, id) =>
                         <tr key={id}>
                             <td>  {item.id} </td>
                             <td>{item.company}</td>
                             <td>{item.stockSymbol}</td>
                             <td>{item.id}</td>
                             <td>$ 49.78</td>
-                            <td > <Link to={`/view/:${item.id}`}> <Button variant="primary" onClick={() => addCompanyDetails(item.id, item.company, item.stockSymbol)} >View</Button>{' '}</Link> </td>
+                            <td > <Link to={`/view/${item.id}`}> <Button variant="primary" >View</Button></Link> </td>
 
                         </tr>)}
 
                 </tbody>
             </Table>
-            {companyDetails.map(item => {
-                return (
-                    <p> {item.company} </p>
-                )
-            })}
-
-        </div >
+            <Pagination paginate={paginate} elementPerPage={noOfElementPerPage} totalTableElement={data1.length} />
+        </div>
     );
 }
 

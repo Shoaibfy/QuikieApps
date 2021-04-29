@@ -1,0 +1,32 @@
+.pagination{
+    display: flex;
+    justify-content: space-between;
+    width: 92.5vw;
+    align-items: center;
+    align-self: flex-start;
+    color: rgb(18, 1, 253);
+    background-color:rgb(187, 187, 207);
+    margin: 1rem;
+    cursor: pointer;
+}
+.pageNo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    height: 50px;
+    border: gray solid 1px;
+    font-size: large;
+    font-weight: bold;
+}
+.clickedPageNo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    height: 50px;
+    border: gray solid 1px;
+    font-size: large;
+    font-weight: bold;
+    background-color: grey;
+}

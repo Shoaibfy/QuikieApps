@@ -1,7 +1,6 @@
 
 
 import { Button, Card } from 'react-bootstrap';
-
 import img3 from '../Assets/GOOGL.png';
 
 const GoogleDetails = () => {
